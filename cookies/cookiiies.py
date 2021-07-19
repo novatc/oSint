@@ -8,8 +8,11 @@ browser = webdriver.Firefox(firefox_binary=binary)
 url = str(sys.argv[1])
 
 browser.get(url)
+browser.implicitly_wait(10000)
+x = input("pls wait")
 cookies = browser.get_cookies()
 for cookie in cookies:
     print(cookie)
 
-browser.quit()
+browser.close()
+
