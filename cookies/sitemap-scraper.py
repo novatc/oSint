@@ -35,5 +35,5 @@ def get_cookies(urls: list):
     
     return session.cookies.get_dict()
 
-links = scrape_sitemaps("https://www.fraudebus.de/sitemap_index.xml")
+links = scrape_sitemaps("https://deananddavid.com/sitemap_index.xml")
 cookies = get_cookies(links)
