@@ -1,2 +1,9 @@
 requests
 bs4
+
+flask
+flask-login
+flask-sqlalchemy
+
+validators
+
