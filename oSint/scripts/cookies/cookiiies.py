@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import sys
-import datetime
+import pandas as pd
 
 
 def get_cookies(url):
@@ -11,14 +11,18 @@ def get_cookies(url):
     domain = str(sys.argv[1])
     url = "https://"+domain+"/"
     browser.get(url)
-    browser.implicitly_wait(10000)
+    cookies_before = browser.get_cookies()
     x = input("Press any key if you accepted the cookies in the browser \n")
-    cookies = browser.get_cookies()
-    for cookie in cookies:
-        print("Cookie name --> ", cookie.get('name'))
-        print("Cookie value --> ", cookie.get('value'))
-        print("Cookie domain --> ", cookie.get('domain'))
-        print("Cookie expiry --> ", datetime.datetime.fromtimestamp(cookie.get('expiry')).isoformat())
+    cookies_after = browser.get_cookies()
 
+
+
+
+    cookie_after_df = pd.DataFrame(cookies_after)
+    cookies_before_df = pd.DataFrame(cookies_before)
+
+
+    cookie_after_df.to_html("cookies_with_consent.html")
+    cookies_before_df.to_html("cookies_without_consent.html")
     browser.close()
 
