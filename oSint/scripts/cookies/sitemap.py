@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 import csv
 
 
-def scrape_sitemaps(url):
+def scrape_sitemaps(base_url):
+    url = base_url + '/sitemap_index.xml'
     result = []
     with requests.Session() as req:
         r = req.get(url)
@@ -34,6 +35,3 @@ def get_cookies(urls: list):
         print(session.cookies.get_dict())
     
     return session.cookies.get_dict()
-
-links = scrape_sitemaps("https://deananddavid.com/sitemap_index.xml")
-cookies = get_cookies(links)
