@@ -8,6 +8,9 @@
     
 + whois + IP-Adresse liefert viel mehr Infos
 
++ python3 SubDomainizer.py -u http://www.example.com
+    + liefert gefundene Subdomains zur gegebenen Domain
+
 ###Webserver und Sicherheit
 + nslookup -type=mx meine-domain.de  
     + liefert Infos über zugeordnete Server + Webserver
@@ -23,5 +26,16 @@
   
         +hackertarget: liefert verschiedene Hostsysteme für eine Domain
         + hunter_io: liefert  Emails
++ cewl -d 2 -m 5 -w output.txt https://www.meine-domain.de 
+    + liefert Passwortlisten basierend auf der Domain
+  
++ python3 Ashok.py -h
+    + liefert viele nützliche Informationen zu einer Domain
+  
++ python metagoofil.py -d meine-domain.com -t doc,pdf -l 200 -n 50 -o output -f result.html
+    + Liefert Metainfos über Nutzer, Mails und Software basierend auf den Dateien der Seite
 
 ### 
+
+### Subdomain
++ SubDomainizer -> python3 SubDomainizer.py -u http://meine-domain.de
