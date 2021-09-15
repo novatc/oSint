@@ -6,8 +6,8 @@ from flask import Blueprint
 from flask import current_app as app
 from flask import flash, redirect, render_template, request, session
 from flask.helpers import url_for
-from oSint.scripts.cookies.cookiiies import get_cookies
-from oSint.scripts.cookies.sitemap import scrape_sitemaps
+from oSint.scripts.cookies.cookiiies import get_cookies, scrape_cookies
+from oSint.scripts.cookies.sitemap import scrape_sitemap
 
 homepage = Blueprint('homepage', __name__)
 
@@ -21,12 +21,9 @@ def home():
         if valid:
 
             base_url = refactor_url(url)
+            urls = scrape_sitemap(base_url)
+            cookies_before, cookies_after = scrape_cookies(base_url, urls)
             
-            cookies_before, cookies_after = get_cookies(base_url)
-            print("Scrape sitemaps ....")
-            sitemaps = scrape_sitemaps(base_url)
-
-            print(sitemaps)
 
             # # # # # # #
             # Do stuff! #

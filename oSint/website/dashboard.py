@@ -5,8 +5,6 @@ import validators
 from flask import Blueprint
 from flask import current_app as app
 from flask import flash, redirect, render_template, request, session
-from oSint.scripts.cookies.cookiiies import get_cookies
-from oSint.scripts.cookies.sitemap import scrape_sitemaps
 
 dashboard = Blueprint('dashboard', __name__)
 

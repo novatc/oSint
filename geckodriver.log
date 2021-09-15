@@ -144,9 +144,12 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 JavaScript error: https://www.gze-ni.de/modules/mod_jpanel/assets/js/jpanel.min.js, line 8: ReferenceError: jQuery is not defined
 console.log: WebExtensions: reset-default-search: starting.
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Johannes\\AppData\\Local\\Temp\\rust_mozprofileb4yLfA"
-1631704380563	Marionette	INFO	Marionette enabled
-console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Johannes\\AppData\\Local\\Temp\\rust_mozprofileb4yLfA\\search.json.mozlz4", (void 0)))
+1631705271888	Marionette	INFO	Stopped listening on port 57786
+JavaScript error: resource:///modules/Interactions.jsm, line 230: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+t_mozprofileb4yLfA\\search.json.mozlz4", (void 0)))
 1631704382554	Marionette	INFO	Listening on port 57858
 1631704382948	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
 JavaScript error: https://www.gze-ni.de/modules/mod_jpanel/assets/js/jpanel.min.js, line 8: ReferenceError: jQuery is not defined
@@ -164,6 +167,48 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 JavaScript error: https://www.gze-ni.de/modules/mod_jpanel/assets/js/jpanel.min.js, line 8: ReferenceError: jQuery is not defined
 1631704522341	Marionette	INFO	Stopped listening on port 57959
 JavaScript error: resource:///modules/Interactions.jsm, line 230: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1631704932825	geckodriver	INFO	Listening on 127.0.0.1:58139
+1631704935870	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Johannes\\AppData\\Local\\Temp\\rust_mozprofilePJfPXi"
+1631704936125	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Johannes\\AppData\\Local\\Temp\\rust_mozprofilePJfPXi\\search.json.mozlz4", (void 0)))
+1631704937983	Marionette	INFO	Listening on port 58147
+1631704938022	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://www.gze-ni.de/modules/mod_jpanel/assets/js/jpanel.min.js, line 8: ReferenceError: jQuery is not defined
+1631704944281	Marionette	INFO	Stopped listening on port 58147
+JavaScript error: resource:///modules/Interactions.jsm, line 230: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1631705230249	geckodriver	INFO	Listening on 127.0.0.1:52579
+1631705233311	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Johannes\\AppData\\Local\\Temp\\rust_mozprofileeJspS1"
+1631705233600	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Johannes\\AppData\\Local\\Temp\\rust_mozprofileeJspS1\\search.json.mozlz4", (void 0)))
+1631705235491	Marionette	INFO	Listening on port 52587
+1631705235967	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://www.gze-ni.de/modules/mod_jpanel/assets/js/jpanel.min.js, line 8: ReferenceError: jQuery is not defined
+JavaScript error: https://www.gze-ni.de/modules/mod_jpanel/assets/js/jpanel.min.js, line 8: ReferenceError: jQuery is not defined
+JavaScript error: https://www.gze-ni.de/modules/mod_jpanel/assets/js/jpanel.min.js, line 8: ReferenceError: jQuery is not defined
+1631705268779	Marionette	INFO	Stopped listening on port 52587
+JavaScript error: resource:///modules/Interactions.jsm, line 230: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1631706143598	geckodriver	INFO	Listening on 127.0.0.1:65277
+1631706146630	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Johannes\\AppData\\Local\\Temp\\rust_mozprofilefqhyVZ"
+1631706146894	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Johannes\\AppData\\Local\\Temp\\rust_mozprofilefqhyVZ\\search.json.mozlz4", (void 0)))
+1631706148750	Marionette	INFO	Listening on port 65285
+1631706148778	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://www.gze-ni.de/modules/mod_jpanel/assets/js/jpanel.min.js, line 8: ReferenceError: jQuery is not defined
+JavaScript error: https://www.gze-ni.de/modules/mod_jpanel/assets/js/jpanel.min.js, line 8: ReferenceError: jQuery is not defined
+JavaScript error: https://www.gze-ni.de/modules/mod_jpanel/assets/js/jpanel.min.js, line 8: ReferenceError: jQuery is not defined
+JavaScript error: https://www.gze-ni.de/plugins/system/hotlogin/extra/hotlogin.js, line 5: TypeError: hldiv is null
+1631706217452	Marionette	INFO	Stopped listening on port 65285
+JavaScript error: resource:///modules/Interactions.jsm, line 230: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
 
 ###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
 
