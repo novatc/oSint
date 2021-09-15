@@ -22,5 +22,5 @@ def get_cookies(url):
     cookies_before_df.to_html("cookies_without_consent.html")
     browser.close()
 
-    return cookies_before_df, cookies_after_df
+    return cookies_before_df.to_html(), cookies_after_df.to_html()
 

@@ -1,9 +1,13 @@
-from flask import Blueprint, render_template, request, flash
+import json
+from os import path
+
+import validators
+from flask import Blueprint
 from flask import current_app as app
+from flask import flash, redirect, render_template, request, session
+from flask.helpers import url_for
 from oSint.scripts.cookies.cookiiies import get_cookies
 from oSint.scripts.cookies.sitemap import scrape_sitemaps
-from os import path
-import validators
 
 homepage = Blueprint('homepage', __name__)
 
@@ -17,8 +21,10 @@ def home():
         if valid:
 
             base_url = refactor_url(url)
-            sitemaps = scrape_sitemaps(base_url)
+            
             cookies_before, cookies_after = get_cookies(base_url)
+            print("Scrape sitemaps ....")
+            sitemaps = scrape_sitemaps(base_url)
 
             print(sitemaps)
 
@@ -28,16 +34,15 @@ def home():
 
             results = {
                 'url' : base_url,
-                'valid': valid,
                 'cookies_before' : cookies_before,
                 'cookies_after' : cookies_after
             }
-
-            return render_template("results.html", results=results)
+            session['data'] = json.dumps(results)
+            return redirect(url_for('dashboard.overview'))
         
         else:
             flash("Website not valid.", category='error')
-        
+
 
     return render_template("home.html")
     

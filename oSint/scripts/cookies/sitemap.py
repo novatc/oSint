@@ -4,7 +4,8 @@ import csv
 
 
 def scrape_sitemaps(base_url):
-    url = base_url + '/sitemap_index.xml'
+    url = base_url + '/sitemap.xml'
+    # TODO check diffrent sitemaps sitemap_index.xml ...
     result = []
     with requests.Session() as req:
         r = req.get(url)
