@@ -7,7 +7,7 @@
     + liefert die IP-Adresse
     
 + whois + IP-Adresse liefert viel mehr Infos
-
++ https://www.whatsmydns.net
 ###Webserver und Sicherheit
 + nslookup -type=mx meine-domain.de  
     + liefert Infos über zugeordnete Server + Webserver
