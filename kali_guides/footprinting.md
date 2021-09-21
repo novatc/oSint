@@ -14,7 +14,9 @@
     
 + wafw00f -a https://meine-domain.de 
     + Gibt Informationen über die eingesetzte Firewall
-    
+  
++ python metagoofil.py -d meinedomain.com -t doc,pdf -l 200 -n 50 -o applefiles -f meinedomain.html
+
 ### Webseiten Metainformationen
 
 + metasploitable -> use search_email_collector -> set DOMAIN meine-domain.de -> run
