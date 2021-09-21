@@ -14,7 +14,9 @@
     
 + wafw00f -a https://meine-domain.de 
     + Gibt Informationen über die eingesetzte Firewall
-    
+  
++ nikto -h meinedomain.de
+
 ### Webseiten Metainformationen
 
 + metasploitable -> use search_email_collector -> set DOMAIN meine-domain.de -> run
