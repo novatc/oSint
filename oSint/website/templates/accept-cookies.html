@@ -37,10 +37,7 @@
             background-size: contain;
             cursor: wait;
         }
-        button#submit-btn {
-            align-self: center;
-            margin: auto;
-        }
+        .buttonHolder{ text-align: center; }
     </style>
 </head>
 
@@ -71,8 +68,10 @@
         <div class="container" id="content">
             <h1 align="center">Please accept all cookies.</h1>
             <form method="POST">
-                <h3 align="center"></h3>
-                <button id="submit-btn" type="submit" class="btn btn-primary" onclick="loading();">Done</button>
+                <br \>
+                <div class="buttonHolder">
+                    <button id="submit-btn" type="submit" class="btn btn-primary" onclick="loading();">Done</button>
+                </div>
             </form>
         </div>
     </div>
