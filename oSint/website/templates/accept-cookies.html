@@ -18,28 +18,35 @@
     <title>Home</title>
 
     <style>
-    .vertical-center {
-        min-height: 80%;  /* Fallback for browsers do NOT support vh unit */
-        min-height: 80vh; /* These two lines are counted as one :-)       */
+        .vertical-center {
+            min-height: 80%;
+            /* Fallback for browsers do NOT support vh unit */
+            min-height: 80vh;
+            /* These two lines are counted as one :-)       */
 
-        display: flex;
-        align-items: center;
-    }
-    div#loading {
-        width: 50px;
-        height: 50px;
-        margin: auto;
-        display: none;
-        background: url(/static/loading_image.gif);
-        background-size: contain;
-        cursor: wait;
-    }
+            display: flex;
+            align-items: center;
+        }
+
+        div#loading {
+            width: 50px;
+            height: 50px;
+            margin: auto;
+            display: none;
+            background: url(/static/loading_image.gif);
+            background-size: contain;
+            cursor: wait;
+        }
+        button#submit-btn {
+            align-self: center;
+            margin: auto;
+        }
     </style>
 </head>
 
 <body>
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Treuhand</a>    
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Treuhand</a>
     </header>
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %} {% for category, message in messages %} {% if category ==
@@ -59,17 +66,13 @@
     </div>
     {% endif %} {% endfor %} {% endif %} {% endwith %}
     <br />
-    <div class = "vertical-center" >
+    <div class="vertical-center">
         <div id="loading"></div>
-        <div class="container" id = "content">
-            <h1 align="center">URL</h1>
+        <div class="container" id="content">
+            <h1 align="center">Please accept all cookies.</h1>
             <form method="POST">
                 <h3 align="center"></h3>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="url" name="url" placeholder="Enter website" required />
-                </div>
-                <br />
-                <button id="submit-btn" type="submit" class="btn btn-primary" onclick="loading();">Start hacking</button>
+                <button id="submit-btn" type="submit" class="btn btn-primary" onclick="loading();">Done</button>
             </form>
         </div>
     </div>
