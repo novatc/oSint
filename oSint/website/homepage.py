@@ -37,11 +37,8 @@ def step_one():
             cookies = {
                 'cookies_before' : cookies_before
             }
+            
             session['cookies'] = json.dumps(cookies)
-
-
-            browser.get(base_url)
-
             
             return redirect(url_for('homepage.step_two'))
         
