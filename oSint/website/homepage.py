@@ -32,8 +32,6 @@ def step_one():
             global browser 
             browser = start_browser()
 
-            browser.get(base_url)
-
             cookies_before = get_cookies(browser, sitemap_urls)
 
             cookies = {
@@ -58,6 +56,7 @@ def step_two():
     if request.method == 'POST':
 
         global browser
+
         sitemap = json.loads(session['sitemap'])
         cookies_after = get_cookies(browser, sitemap)
         

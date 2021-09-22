@@ -6,7 +6,7 @@ import csv
 def scrape_sitemap(base_url):
     url = base_url + '/sitemap.xml'
     # TODO check diffrent sitemaps sitemap_index.xml ...
-    result = []
+    result = [base_url]
     with requests.Session() as req:
         r = req.get(url)
         soup = BeautifulSoup(r.content, 'html.parser')
