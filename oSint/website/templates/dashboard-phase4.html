@@ -11,10 +11,68 @@
             </div>
         </div>
     </div>
-
-    <h2>Cookies before consent</h2>
-    {{ cookies_before|safe }}
-    <h2>Cookies after consent</h2>
-    {{ cookies_after|safe }}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h3>Cookies before consent</h3>
+    </div>
+    <table class="table-responsive table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Value</th>
+                <th scope="col">Domain</th>
+                <th scope="col">Path</th>
+                <th scope="col">Secure</th>
+                <th scope="col">HttpOnly</th>
+                <th scope="col">Expiry</th>
+                <th scope="col">SameSite</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in cookies_before %}
+            <tr>
+                <th style="word-wrap: break-word;min-width: 7vw;max-width: 7vw;">{{ c.name }}</th>
+                <td style="word-wrap: break-word;min-width: 30vw;max-width: 30vw;">{{ c.value }}</td>
+                <td style="word-wrap: break-word;min-width: 10vw;max-width: 10vw;">{{ c.domain }}</td>
+                <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ c.path }}</td>
+                <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ c.secure }}</td>
+                <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ c.httpOnly }}</td>
+                <td style="word-wrap: break-word;min-width: 10vw;max-width: 10vw;">{{ c.expiry }}</td>
+                <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ c.httpOnly }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br />
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h3>Cookies after consent</h3>
+    </div>
+    <table class="table-responsive table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Value</th>
+                <th scope="col">Domain</th>
+                <th scope="col">Path</th>
+                <th scope="col">Secure</th>
+                <th scope="col">HttpOnly</th>
+                <th scope="col">Expiry</th>
+                <th scope="col">SameSite</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in cookies_after %}
+            <tr>
+                <th style="word-wrap: break-word;min-width: 7vw;max-width: 7vw;">{{ c.name }}</th>
+                <td style="word-wrap: break-word;min-width: 30vw;max-width: 30vw;">{{ c.value }}</td>
+                <td style="word-wrap: break-word;min-width: 10vw;max-width: 10vw;">{{ c.domain }}</td>
+                <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ c.path }}</td>
+                <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ c.secure }}</td>
+                <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ c.httpOnly }}</td>
+                <td style="word-wrap: break-word;min-width: 10vw;max-width: 10vw;">{{ c.expiry }}</td>
+                <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ c.httpOnly }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </main>
 {% endblock %}

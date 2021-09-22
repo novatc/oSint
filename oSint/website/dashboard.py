@@ -10,8 +10,8 @@ dashboard = Blueprint('dashboard', __name__)
 
 @dashboard.route('/')
 def overview():
-    data = json.loads(session['data'])
-    return render_template("dashboard-overview.html", url = data['url'])
+    url = json.loads(session['url'])
+    return render_template("dashboard-overview.html", url = url)
     
 @dashboard.route('/dns-ip-analysis')
 def phase_1():
@@ -28,5 +28,5 @@ def phase_3():
 
 @dashboard.route('/cookie-compliance')
 def phase_4():
-    data = json.loads(session['data'])
-    return render_template("dashboard-phase4.html", cookies_before = data['cookies_before'], cookies_after = data['cookies_after'])
+    cookies = json.loads(session['cookies'])
+    return render_template("dashboard-phase4.html", cookies_before = cookies['cookies_before'], cookies_after = cookies['cookies_after'])

@@ -1,6 +1,6 @@
 import json
 from os import path
-import pandas as pd
+
 
 import validators
 from flask import Blueprint
@@ -35,6 +35,7 @@ def step_one():
             browser.get(base_url)
 
             cookies_before = get_cookies(browser, sitemap_urls)
+
             cookies = {
                 'cookies_before' : cookies_before
             }
@@ -59,18 +60,13 @@ def step_two():
         global browser
         sitemap = json.loads(session['sitemap'])
         cookies_after = get_cookies(browser, sitemap)
-
-        cookies_after_df = pd.DataFrame(cookies_after)
-
-        browser.close()
-
-        cookies_after = cookies_after_df.to_html()
         
         cookies = json.loads(session['cookies'])
         cookies['cookies_after'] = cookies_after
             
         session['cookies'] = json.dumps(cookies)
 
+        browser.close()
         return redirect(url_for('dashboard.overview'))
 
 
