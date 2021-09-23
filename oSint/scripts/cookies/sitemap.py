@@ -3,8 +3,10 @@ from bs4 import BeautifulSoup
 import csv
 
 
-def scrape_sitemaps(url):
-    result = []
+def scrape_sitemap(base_url):
+    url = base_url + '/sitemap.xml'
+    # TODO check diffrent sitemaps sitemap_index.xml ...
+    result = [base_url]
     with requests.Session() as req:
         r = req.get(url)
         soup = BeautifulSoup(r.content, 'html.parser')
@@ -16,14 +18,16 @@ def scrape_sitemaps(url):
                 r = req.get(link)
                 #print(link, r.status_code)
                 writer.writerow([link, r.status_code])
-                #result.append(link)
+                if link not in result:
+                    result.append(link)
                 soup = BeautifulSoup(r.content, 'html.parser')
                 end = [item.text for item in soup.select("loc")]
                 for a in end:
                     r = req.head(a)
                     #print(a, r.status_code)
                     writer.writerow([a, r.status_code])
-                    result.append(a)
+                    if a not in result:
+                        result.append(a)
     return result
 
 def get_cookies(urls: list):
@@ -34,6 +38,3 @@ def get_cookies(urls: list):
         print(session.cookies.get_dict())
     
     return session.cookies.get_dict()
-
-links = scrape_sitemaps("https://deananddavid.com/sitemap_index.xml")
-cookies = get_cookies(links)
