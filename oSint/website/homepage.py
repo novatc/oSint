@@ -8,7 +8,7 @@ from flask import current_app as app
 from flask import flash, redirect, render_template, request, session
 from flask.helpers import url_for
 from oSint.scripts.cookies.cookiiies import get_cookies, scrape_cookies, start_browser
-from oSint.scripts.find_ip import find_ip
+from oSint.scripts.dns_records import *
 from oSint.scripts.cookies.sitemap import scrape_sitemap
 
 homepage = Blueprint('homepage', __name__)
@@ -27,6 +27,7 @@ def step_one():
             base_url = refactor_url(url)
             session['url'] = json.dumps(url)
             print(find_ip(base_url))
+            print(get_dns_record(base_url))
 
             sitemap_urls = scrape_sitemap(base_url)
             session['sitemap'] = json.dumps(sitemap_urls)
