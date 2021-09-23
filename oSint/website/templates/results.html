@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+    <h1 align="center">Results</h1>
+    {% if results['valid'] %}
+        <label >The website is valid</label>
+    {% else %}
+        <label>The website is not valid</label>
+    {% endif %}
+    
+    
+{% endblock %}
