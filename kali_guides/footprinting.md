@@ -7,6 +7,7 @@
     + liefert die IP-Adresse
     
 + whois + IP-Adresse liefert viel mehr Infos
++ https://www.whatsmydns.net
 
 + python3 SubDomainizer.py -u http://www.example.com
     + liefert gefundene Subdomains zur gegebenen Domain
@@ -19,6 +20,9 @@
     + Gibt Informationen über die eingesetzte Firewall
   
 + nikto -h meinedomain.de
+
+  
++ python metagoofil.py -d meinedomain.com -t doc,pdf -l 200 -n 50 -o applefiles -f meinedomain.html
 
 ### Webseiten Metainformationen
 
