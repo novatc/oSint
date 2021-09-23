@@ -19,6 +19,9 @@
 + wafw00f -a https://meine-domain.de 
     + Gibt Informationen über die eingesetzte Firewall
   
++ nikto -h meinedomain.de
+
+  
 + python metagoofil.py -d meinedomain.com -t doc,pdf -l 200 -n 50 -o applefiles -f meinedomain.html
 
 ### Webseiten Metainformationen
