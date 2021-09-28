@@ -26,6 +26,8 @@
 
 ### Webseiten Metainformationen
 
++ https://whatcms.org/API
+
 + metasploitable -> use search_email_collector -> set DOMAIN meine-domain.de -> run
 
 + recon-ng -> workspaces create ... -> modules load ...
