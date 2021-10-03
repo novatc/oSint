@@ -29,6 +29,10 @@
 + https://whatcms.org/API
 
 + metasploitable -> use search_email_collector -> set DOMAIN meine-domain.de -> run
+  asterisk_creds
+  http_pdf_authors
+  
+  
 
 + recon-ng -> workspaces create ... -> modules load ...
   

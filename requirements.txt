@@ -7,4 +7,4 @@ flask-login
 flask-sqlalchemy
 
 validators
-
+python-wappalyzer
