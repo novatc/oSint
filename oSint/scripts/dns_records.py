@@ -51,5 +51,5 @@ def dns_whois(url: str):
     print(w)
     
 
-ip = find_ip("https://deananddavid.com/")
-dns_whois("https://deananddavid.com/")
+# ip = find_ip("https://deananddavid.com/")
+# dns_whois("https://deananddavid.com/")

@@ -46,18 +46,7 @@ def ashok(url):
 
     Args:
         url ([type]): URL (https://www.example.com)
-        get_headers (bool, optional): Httpheaders of target url. Defaults to False.
-        get_dns (bool, optional): Dnslookup of target domain. Defaults to False.
-        get_subdomain (bool, optional): Subdomain lookup of target domain. Defaults to False.
-        get_nmap (bool, optional): Nmap scan of target domain. Defaults to False.
-        get_username (bool, optional): Github username of target. Defaults to False.
-        get_cms (bool, optional): Cms detect with headers url of target. Defaults to False.
-        get_extract (bool, optional): Extract links from target url(https/http). Defaults to False.
-        get_cidr (bool, optional): Cidr for subnetlookup of target. Defaults to False.
-        get_banner (bool, optional): Banner grabing of target ip address. Defaults to False.
-        get_geoip (bool, optional): GeoIP lookup of target ip address. Defaults to False.
-        get_wayback (bool, optional): Internet Archive Crawling of target domain. Defaults to False.
-        get_dorknumber (bool, optional): Google dorking results number. Defaults to False.
+        
     """
     ashok_result = {}
 
@@ -94,7 +83,7 @@ def ashok(url):
     print()
 
     # Port Scan using nmap of single target domain 
-    # Outdated. Key required
+    # Outdated. Key required. Use nmap instead
     # print("[+] Port scanning of target domain")
     # result = nmap(domain)
     # ashok_result['nmap'] = result
@@ -143,10 +132,10 @@ def ashok(url):
     print()
 
     # Dump internet-archive machine with json output for single url
-    print("[+] Dumping and Crawling Internet Archive Machine With Ashok")
-    result_url = waybackurl(url)
-    result_robots = waybackrobots(url)
-    result_json = waybackjson(url)
+    # print("[+] Dumping and Crawling Internet Archive Machine With Ashok")
+    # result_url = waybackurl(url)
+    # result_robots = waybackrobots(url)
+    # result_json = waybackjson(url)
     # ashok_result['wayback'] = {
     #     'url': result_url,
     #     'robots': result_robots,

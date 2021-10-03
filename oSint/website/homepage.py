@@ -29,7 +29,7 @@ def step_one():
 
             base_url = refactor_url(url)
             Session.set('url', base_url)
-            #print(find_ip(base_url))
+            print(find_ip(base_url))
 
             sitemap = scrape_sitemap(base_url)
             Session.set('sitemap', sitemap)
