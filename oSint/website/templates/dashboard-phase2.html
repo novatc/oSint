@@ -12,6 +12,27 @@
         </div>
     </div>
 
-    <h2>Section title</h2>
+    <h2>Web technologies</h2>
+    <div class="table-responsive">
+        <table class="table align-middle table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Versions</th>
+                    <th scope="col">Categories</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in webtech.items() %}
+                <tr>
+                    <th>{{ key }}</th>
+                    <td>{{ value['versions'] }}</td>
+                    <td>{{ value['categories'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 </main>
 {% endblock %}

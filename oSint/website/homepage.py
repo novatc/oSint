@@ -1,15 +1,18 @@
 import json
 from os import path
-
+import time
 
 import validators
 from flask import Blueprint
 from flask import current_app as app
-from flask import flash, redirect, render_template, request, session
+from flask import flash, redirect, render_template, request
 from flask.helpers import url_for
 from oSint.scripts.cookies.cookiiies import get_cookies, scrape_cookies, start_browser
 from oSint.scripts.dns_records import find_ip
+
 from oSint.scripts.cookies.sitemap import scrape_sitemap
+from oSint.scripts.wappalyzer.wappalyzer import analyze_webpage
+from oSint.website.util.session import Session
 
 homepage = Blueprint('homepage', __name__)
 
@@ -25,22 +28,23 @@ def step_one():
         if valid:
 
             base_url = refactor_url(url)
-            session['url'] = json.dumps(url)
+            Session.set('url', base_url)
             print(find_ip(base_url))
 
-            sitemap_urls = scrape_sitemap(base_url)
-            session['sitemap'] = json.dumps(sitemap_urls)
+            sitemap = scrape_sitemap(base_url)
+            Session.set('sitemap', sitemap)
 
             global browser 
             browser = start_browser()
 
-            cookies_before = get_cookies(browser, sitemap_urls)
+            urls = [tuple[0] for tuple in sitemap]
+            cookies_before = get_cookies(browser, urls)
 
             cookies = {
                 'cookies_before' : cookies_before
             }
             
-            session['cookies'] = json.dumps(cookies)
+            Session.set('cookies', cookies)
             
             return redirect(url_for('homepage.step_two'))
         
@@ -56,15 +60,20 @@ def step_two():
 
         global browser
 
-        sitemap = json.loads(session['sitemap'])
-        cookies_after = get_cookies(browser, sitemap)
+        sitemap = Session.get('sitemap')
+        urls = [tuple[0] for tuple in sitemap]
+        cookies_after = get_cookies(browser, urls)
         
-        cookies = json.loads(session['cookies'])
+        cookies = Session.get('cookies')
         cookies['cookies_after'] = cookies_after
             
-        session['cookies'] = json.dumps(cookies)
+        Session.set('cookies', cookies)
 
         browser.close()
+
+        web_technologies = analyze_webpage(Session.get('url'))
+        Session.set('web_technologies', web_technologies)
+
         return redirect(url_for('dashboard.overview'))
 
 

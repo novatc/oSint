@@ -17,6 +17,7 @@ pyvenv.cfg
 pip-selfcheck.json
 *.egg-info/
 *.egg
+*.log
 
 ### VisualStudioCode ###
 .vscode/*
@@ -69,3 +70,6 @@ $RECYCLE.BIN/
 __pycache__/
 *.py[cod]
 *$py.class
+
+
+*.log
