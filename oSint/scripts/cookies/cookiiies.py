@@ -1,7 +1,10 @@
+import sys
+import time
+
+import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
-import sys
-import pandas as pd
+
 
 def start_browser():
     binary = FirefoxBinary(r'C:\Program Files\Mozilla Firefox\firefox.exe')
@@ -14,6 +17,7 @@ def get_cookies(browser, urls: list):
     final_cookies = []
     for url in urls:
         browser.get(url)
+        time.sleep(0.1)
         cookies = browser.get_cookies()
         for cookie in cookies:
             if cookie not in final_cookies:

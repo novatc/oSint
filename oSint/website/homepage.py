@@ -30,14 +30,14 @@ def step_one():
             Session.set('url', base_url)
             #print(find_ip(base_url))
 
-            sitemap_urls = scrape_sitemap(base_url)
-            Session.set('sitemap', sitemap_urls)
+            sitemap = scrape_sitemap(base_url)
+            Session.set('sitemap', sitemap)
 
             global browser 
             browser = start_browser()
-            time.sleep(0.5)
 
-            cookies_before = get_cookies(browser, sitemap_urls)
+            urls = [tuple[0] for tuple in sitemap]
+            cookies_before = get_cookies(browser, urls)
 
             cookies = {
                 'cookies_before' : cookies_before
@@ -60,7 +60,8 @@ def step_two():
         global browser
 
         sitemap = Session.get('sitemap')
-        cookies_after = get_cookies(browser, sitemap)
+        urls = [tuple[0] for tuple in sitemap]
+        cookies_after = get_cookies(browser, urls)
         
         cookies = Session.get('cookies')
         cookies['cookies_after'] = cookies_after

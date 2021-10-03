@@ -12,7 +12,7 @@ dashboard = Blueprint('dashboard', __name__)
 @dashboard.route('/')
 def overview():
     url = json.loads(session['url'])
-    return render_template("dashboard-overview.html", url = url)
+    return render_template("dashboard-overview.html", url = url, sitemap = Session.get('sitemap'))
     
 @dashboard.route('/dns-ip-analysis')
 def phase_1():

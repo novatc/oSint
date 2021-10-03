@@ -5,7 +5,7 @@ class Session:
 
     @staticmethod
     def set(key, data):
-        session[str(key)] = json.dumps(data)
+        session[str(key)] = json.dumps(data, sort_keys=True)
 
     @staticmethod
     def get(key):
