@@ -1,4 +1,5 @@
 import json
+from oSint.website.util.session import Session
 from os import path
 
 import validators
@@ -20,7 +21,7 @@ def phase_1():
 
 @dashboard.route('/metadata-check')
 def phase_2():
-    return render_template("dashboard-phase2.html")
+    return render_template("dashboard-phase2.html", webtech = Session.get('web_technologies'))
 
 @dashboard.route('/vulnerability-scan')
 def phase_3():
@@ -29,4 +30,4 @@ def phase_3():
 @dashboard.route('/cookie-compliance')
 def phase_4():
     cookies = json.loads(session['cookies'])
-    return render_template("dashboard-phase4.html", cookies_before = cookies['cookies_before'], cookies_after = cookies['cookies_after'])
+    return render_template("dashboard-phase4.html", cookies_before = Session.get('cookies_before'), cookies_after = Session.get('cookies_after'))
