@@ -8,3 +8,4 @@ flask-sqlalchemy
 
 validators
 python-wappalyzer
+dnspython==2.1.0
