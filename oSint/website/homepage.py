@@ -8,6 +8,7 @@ from flask import current_app as app
 from flask import flash, redirect, render_template, request
 from flask.helpers import url_for
 from oSint.scripts.cookies.cookiiies import get_cookies, scrape_cookies, start_browser
+from oSint.scripts.dns_records import find_ip
 
 from oSint.scripts.cookies.sitemap import scrape_sitemap
 from oSint.scripts.wappalyzer.wappalyzer import analyze_webpage
