@@ -1,10 +1,23 @@
+# Ashok
+webtech
+requests
+google
+
+# Web
 requests
 bs4
-pandas
+validators
 
+# Flask
 flask
 flask-login
 flask-sqlalchemy
 
-validators
+# General
+pandas
+python-wappalyzer
+
+
+
+
 
