@@ -29,5 +29,5 @@ def phase_3():
 
 @dashboard.route('/cookie-compliance')
 def phase_4():
-    cookies = json.loads(session['cookies'])
-    return render_template("dashboard-phase4.html", cookies_before = Session.get('cookies_before'), cookies_after = Session.get('cookies_after'))
+    cookies = Session.get('cookies')
+    return render_template("dashboard-phase4.html", cookies_before = cookies['cookies_before'], cookies_after = cookies['cookies_after'])

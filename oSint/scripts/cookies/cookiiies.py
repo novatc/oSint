@@ -1,6 +1,6 @@
 import sys
 import time
-
+from datetime import datetime
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
@@ -14,16 +14,18 @@ def start_browser():
 
 def get_cookies(browser, urls: list):
     urls = list(urls)
-    final_cookies = []
+    final_cookies = {}
     for url in urls:
         browser.get(url)
         time.sleep(0.1)
         cookies = browser.get_cookies()
-        for cookie in cookies:
-            if cookie not in final_cookies:
-                final_cookies.append(cookie)
+        for cookie in cookies: 
+            if 'expiry' in cookie:
+                cookie['expiry'] = datetime.fromtimestamp(cookie['expiry']).strftime("%d/%m/%Y, %H:%M:%S")        
+            final_cookies[cookie['name']] = cookie
 
-    return final_cookies
+    print(final_cookies)
+    return final_cookies 
 
 def scrape_cookies(base_url, urls):
     browser = start_browser()

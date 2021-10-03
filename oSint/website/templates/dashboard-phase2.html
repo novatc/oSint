@@ -23,11 +23,11 @@
                 </tr>
             </thead>
             <tbody>
-                {% for key in webtech %}
+                {% for key, value in webtech.items() %}
                 <tr>
                     <th>{{ key }}</th>
-                    <td>{{ webtech[key]['versions'] }}</td>
-                    <td>{{ webtech[key]['categories'] }}</td>
+                    <td>{{ value['versions'] }}</td>
+                    <td>{{ value['categories'] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
