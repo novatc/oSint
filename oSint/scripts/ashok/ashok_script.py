@@ -150,8 +150,3 @@ def ashok(url):
     # print()
 
     return ashok_result
-
-r = ashok('https://www.deepl.com/')
-for k, v in r.items(): 
-
-    print(str(k)  + ' : ' + str(v))
