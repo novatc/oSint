@@ -16,7 +16,7 @@ def overview():
     
 @dashboard.route('/dns-ip-analysis')
 def phase_1():
-    return render_template("dashboard-phase1.html")
+    return render_template("dashboard-phase1.html", host = Session.get('hosts'), ports = Session.get('ports'))
 
 
 @dashboard.route('/metadata-check')

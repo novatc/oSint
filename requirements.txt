@@ -18,3 +18,4 @@ pandas
 python-wappalyzer
 dnspython==2.1.0
 python-whois
+python-nmap
