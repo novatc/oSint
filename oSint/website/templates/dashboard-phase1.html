@@ -35,7 +35,11 @@
                                 <li>{{ port[0] }} {{ port[1] }}</li>
                             {% endfor %}
                         </th>
-                        <th>{{ elem['protocols'][0] }}</th>
+                        <th>
+                            {% for prot in elem['protocols'] %}
+                                <li>{{ prot }} </li>
+                            {% endfor %}
+                        </th>
                         <th>{{ elem['os'] }}</th>
                         <th>{{ elem['accuracy'] }}%</th>
                     </tr>
@@ -43,5 +47,8 @@
                 </tbody>
             </table>
         </div>
+
+
+
     </main>
 {% endblock %}

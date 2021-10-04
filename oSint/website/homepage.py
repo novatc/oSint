@@ -8,7 +8,7 @@ from flask import current_app as app
 from flask import flash, redirect, render_template, request
 from flask.helpers import url_for
 from oSint.scripts.cookies.cookiiies import get_cookies, scrape_cookies, start_browser
-from oSint.scripts.dns_records import find_ip
+from oSint.scripts.dns_records import find_ip, get_dns_record
 from oSint.scripts.host_discovery_nmap import run_host_discovery
 
 from oSint.scripts.cookies.sitemap import scrape_sitemap
@@ -61,8 +61,9 @@ def step_one():
                 hosts = run_host_discovery(ip)
                 Session.set('hosts', hosts)
 
-                print(Session.get("hosts"))
-                print(Session.get("protocols"))
+            # dns
+            dns_record = get_dns_record(base_url)
+            #Session.set('dns_record', dns_record)
             return redirect(url_for('homepage.step_two'))
         
         else:
@@ -94,7 +95,7 @@ def step_two():
 
         web_technologies = analyze_webpage(Session.get('url'))
         Session.set('web_technologies', web_technologies)
-
+        
         return redirect(url_for('dashboard.overview'))
 
 
