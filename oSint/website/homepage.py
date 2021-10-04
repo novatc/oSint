@@ -33,15 +33,15 @@ def hompage():
 
         base_url = refactor_url(url)
         Session.set('url', base_url)
-        
+
         if 'phase-one' in options:
-            phase_one(base_url, request.form.get('phase-one-options'))
+            phase_one(base_url, request.form.getlist('phase-one-options'))
         if 'phase-two' in options:
-            phase_two(base_url, request.form.get('phase-two-options'))
+            phase_two(base_url, request.form.getlist('phase-two-options'))
         if 'phase-three' in options:
-            phase_three(base_url, request.form.get('phase-three-options'))
+            phase_three(base_url, request.form.getlist('phase-three-options'))
         if 'phase-four' in options:
-             return phase_four(base_url, request.form.get('phase-four-options'))
+             return phase_four(base_url, request.form.getlist('phase-four-options'))
 
 
         print(find_ip(base_url))

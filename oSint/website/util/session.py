@@ -22,4 +22,3 @@ class Session:
             'cookies_after': {},
             'cookies_before': {}
         })
-        session['web_technologies'] = json.dumps({})
