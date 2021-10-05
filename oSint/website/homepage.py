@@ -56,8 +56,14 @@ def hompage():
 
 
 def phase_one(url, options):
+    ip = find_ip(url)
     print("Phase 1 started")
     options = options if options else []
+
+    if 'nmap' in options:
+        print("Running nmap: ", ip)
+        hosts = run_host_discovery(ip)
+        Session.set('nmap_hosts', hosts)
 
 
 def phase_two(url, options):
@@ -72,6 +78,8 @@ def phase_two(url, options):
         print("Running ashok")
         result = ashok(url)
         Session.set('ashok_results', result)
+
+
 
 
 def phase_three(url, options):
