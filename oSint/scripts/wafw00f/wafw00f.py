@@ -1,5 +1,5 @@
 from modules.wafw00f.art import randomArt
-from modules.wafw00f.main_waf00f import WAFW00F, buildResultRecord
+from modules.wafw00f.main_wafw00f import WAFW00F, buildResultRecord
 
 
 def run_wafw00f(url):

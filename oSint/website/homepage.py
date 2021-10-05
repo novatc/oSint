@@ -84,7 +84,7 @@ def phase_three(url, options):
     options = options if options else []
     if 'waf00f' in options:
         print("Running waf00f")
-        result = run_waf00f(url)
+        result = run_wafw00f(url)
         Session.set('waf00f', result)
 
 
