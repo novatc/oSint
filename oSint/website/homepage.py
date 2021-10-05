@@ -11,6 +11,7 @@ from oSint.scripts.ashok.ashok_script import ashok
 from oSint.scripts.cookies.cookiiies import get_cookies, scrape_cookies, start_browser
 from oSint.scripts.dns_records import find_ip, get_dns_record
 from oSint.scripts.host_discovery_nmap import run_host_discovery
+from oSint.scripts.waf00f.waf00f import run_waf00f
 
 from oSint.scripts.cookies.sitemap import scrape_sitemap
 from oSint.scripts.wappalyzer.wappalyzer import analyze_webpage
@@ -20,10 +21,11 @@ homepage = Blueprint('homepage', __name__)
 
 browser = None
 
+
 @homepage.route('/', methods=['GET', 'POST'])
 def hompage():
     if request.method == 'POST':
-        
+
         url = request.form.get('url')
         options = request.form.getlist('hacking-options') if request.form.getlist('hacking-options') else []
 
@@ -42,14 +44,11 @@ def hompage():
         if 'phase-three' in options:
             phase_three(base_url, request.form.getlist('phase-three-options'))
         if 'phase-four' in options:
-             return phase_four(base_url, request.form.getlist('phase-four-options'))
-
+            return phase_four(base_url, request.form.getlist('phase-four-options'))
 
         print(find_ip(base_url))
 
-
         return redirect(url_for('dashboard.overview'))
-
 
     Session.reset()
     return render_template("home.html")
@@ -80,11 +79,13 @@ def phase_two(url, options):
         Session.set('ashok_results', result)
 
 
-
-
 def phase_three(url, options):
     print("Phase 3 started")
     options = options if options else []
+    if 'waf00f' in options:
+        print("Running waf00f")
+        result = run_waf00f(url)
+        Session.set('waf00f', result)
 
 
 def phase_four(url, options):
@@ -104,11 +105,12 @@ def phase_four(url, options):
 
     cookies_before = get_cookies(browser, urls)
     cookies = {
-        'cookies_before' : cookies_before
+        'cookies_before': cookies_before
     }
     Session.set('cookies', cookies)
 
     return redirect(url_for('homepage.step_two'))
+
 
 @homepage.route('/accept-cookies', methods=['GET', 'POST'])
 def step_two():
@@ -123,20 +125,18 @@ def step_two():
             urls = [Session.get('url')]
 
         cookies_after = get_cookies(browser, urls)
-        
+
         cookies = Session.get('cookies')
         cookies['cookies_after'] = cookies_after
-            
+
         Session.set('cookies', cookies)
 
         browser.close()
 
         return redirect(url_for('dashboard.overview'))
 
-
     return render_template("accept-cookies.html")
 
 
 def refactor_url(url):
-    return '/'.join(url.split('/')[:3]) 
-
+    return '/'.join(url.split('/')[:3])
