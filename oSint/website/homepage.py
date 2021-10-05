@@ -9,7 +9,8 @@ from flask import flash, redirect, render_template, request
 from flask.helpers import url_for
 from oSint.scripts.ashok.ashok_script import ashok
 from oSint.scripts.cookies.cookiiies import get_cookies, scrape_cookies, start_browser
-from oSint.scripts.dns_records import find_ip
+from oSint.scripts.dns_records import find_ip, get_dns_record
+from oSint.scripts.host_discovery_nmap import run_host_discovery
 
 from oSint.scripts.cookies.sitemap import scrape_sitemap
 from oSint.scripts.wappalyzer.wappalyzer import analyze_webpage
@@ -46,9 +47,9 @@ def hompage():
 
         print(find_ip(base_url))
 
-        
+
         return redirect(url_for('dashboard.overview'))
-            
+
 
     Session.reset()
     return render_template("home.html")
@@ -90,7 +91,7 @@ def phase_four(url, options):
     else:
         urls.append(url)
 
-    global browser 
+    global browser
     browser = start_browser()
 
     cookies_before = get_cookies(browser, urls)
@@ -98,10 +99,10 @@ def phase_four(url, options):
         'cookies_before' : cookies_before
     }
     Session.set('cookies', cookies)
-    
+
     return redirect(url_for('homepage.step_two'))
 
-@homepage.route('/accept-cookies', methods=['GET', 'POST'])  
+@homepage.route('/accept-cookies', methods=['GET', 'POST'])
 def step_two():
     if request.method == 'POST':
 
