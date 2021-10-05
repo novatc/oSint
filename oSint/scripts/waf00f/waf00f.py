@@ -12,7 +12,7 @@ def run_waf00f(url):
         for i in waf:
             results.append(buildResultRecord(url, i))
         print('[+] The site is behind %s%s%s WAF.')
-    if  len(waf) == 0:
+    if len(waf) == 0:
         print('[+] Generic Detection results:')
         if attacker.genericdetect():
             print('Generic Detection: %s' % attacker.knowledge['generic']['reason'])
@@ -24,5 +24,3 @@ def run_waf00f(url):
             results.append(buildResultRecord(url, None))
     print('[~] Number of requests: %s' % attacker.requestnumber)
     return results
-
-
