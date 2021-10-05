@@ -1,3 +1,4 @@
+import json
 import socket
 from urllib.parse import urlparse
 import dns.resolver
@@ -16,40 +17,34 @@ def find_ip(url: str) -> str:
 
 
 def get_dns_record(url: str):
+    record = {}
     url = transform_url(url)
-    list_of_nameserver = []
-    list_of_mailservers =[]
-    soa = ""
+    list_of_nameservers = []
+    list_of_mailservers = []
     list_of_txt = []
-    resolver = dns.resolver.Resolver()
-    resolver.nameservers = [socket.gethostbyname('8.8.8.8')]
 
-    answers = dns.resolver.resolve(url, 'MX')
-    for rdata in answers:
-        list_of_mailservers.append(rdata.exchange)
-        print('Mail', rdata.exchange)
+    ns = dns.resolver.resolve(url, 'NS')
+    mx = dns.resolver.resolve(url, 'MX')
+    soa = dns.resolver.resolve(url, 'SOA')
+    txt = dns.resolver.resolve(url, 'TXT')
+    for data in ns:
+        list_of_nameservers.append(str(data))
+    for data in mx:
+        list_of_mailservers.append(str(data))
 
-    answers = dns.resolver.resolve(url, 'NS')
-    for rdata in answers.response.answer[0].items:
-        list_of_nameserver.append(rdata)
-        print('Nameserver', rdata)
+    for data in txt:
+        list_of_txt.append(data)
 
-    answers = dns.resolver.resolve(url, 'SOA')
-    for rdata in answers.response.answer[0].items:
-        soa = rdata
-        print('SOA', rdata)
+    #record['NS'] = list_of_nameservers
+    #record['MX'] = list_of_mailservers
+    record['SOA'] = soa
+    record['TXT'] = list_of_txt
+    return record
 
-    answers = dns.resolver.resolve(url, 'TXT')
-    for rdata in answers.response.answer[0].items:
-        list_of_txt.append(rdata)
-        print('TXT', rdata)
-    return [list_of_mailservers, list_of_nameserver, soa, list_of_txt]
 
 def dns_whois(url: str):
     url = transform_url(url)
     w = whois.whois(url)
-    print(w)
-    
 
-# ip = find_ip("https://deananddavid.com/")
-# dns_whois("https://deananddavid.com/")
+
+

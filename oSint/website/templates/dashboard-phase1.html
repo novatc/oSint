@@ -1,17 +1,171 @@
-{% extends "dashboard.html" %} {% block title %}Phase 1{% endblock %} 
-{% block content%}
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">DNS & IP Analysis</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+{% extends "dashboard.html" %} {% block title %}Phase 1{% endblock %}
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">DNS & IP Analysis</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                </div>
             </div>
         </div>
+
+        <h2>NMAP</h2>
+        <div class="table-responsive">
+            <table class="table align-middle table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">IP</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Port</th>
+                    <th scope="col">Protocols</th>
+                    <th scope="col">Operation System</th>
+                    <th scope="col">System Accuracy</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for elem in host %}
+                    <tr>
+                        <th>{{ elem['ip'] }}</th>
+                        <th>{{ elem['state'] }}</th>
+                        <th>
+                            {% for port in elem['port'] %}
+                                <li>{{ port[0] }} {{ port[1] }}</li>
+                            {% endfor %}
+                        </th>
+                        <th>
+                            {% for prot in elem['protocols'] %}
+                                <li>{{ prot }} </li>
+                            {% endfor %}
+                        </th>
+                        <th>{{ elem['os'] }}</th>
+                        <th>{{ elem['accuracy'] }}%</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </main>
+    <!-- Ashok -->
+    {% if ashok is not none %}
+    <h2>Ashok results</h2>
+
+    <!-- Ashok - headers -->
+    <h4>Extracted headers:</h4>
+    {% for key, value in ashok['headers'].items() %}
+    <h6>{{ key }}</h6>
+    <div class="table-responsive">
+        <table class="table align-middle table-striped table-bordered">
+            <thead>
+                <tr>
+                    {% for k in value.keys() %}
+                    <th scope="col">{{ k }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for v in value.values() %}
+                    <td>{{ v }}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    {% endfor %}
+
+    <!-- Ashok - DNS -->
+    <br />
+    <h4>DNS lookup:</h4>
+    <div class="table-responsive">
+        <table class="table align-middle table-striped table-bordered">
+            <tbody>
+                {% for key, value in ashok['dns'].items() %}
+                <tr>
+                    <th>{{ key }}</th>
+                    <td>{{ value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 
-    <h2>Section title</h2>
+    <!-- Ashok - subdomain -->
+    <br />
+    <h4>Subdomain lookup:</h4>
+    <div class="table-responsive">
+        <table class="table align-middle table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">URL</th>
+                    <th scope="col">IP</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in ashok['subdomain'].items() %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Ashok - DNS -->
+    <br />
+    <h4>Extracted links:</h4>
+    <div class="table-responsive" style="height: 400px; overflow-y: auto;">
+        <table class="table align-middle table-striped table-bordered">
+            <tbody>
+                {% for item in ashok['extract'] %}
+                <tr>
+                    <td>{{ item }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Ashok - banner -->
+    <br />
+    <h4>Grabbed banners:</h4>
+    <div class="table-responsive">
+        <table class="table align-middle table-striped table-bordered">
+            <tbody>
+                {% for key, value in ashok['banner'].items() %}
+                <tr>
+                    <th>{{ key }}</th>
+                    <td>{{ value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Ashok - geoip -->
+    <br />
+    <h4>Geoip lookup:</h4>
+    <div class="table-responsive">
+        <table class="table align-middle table-striped table-bordered">
+            <tbody>
+                {% for key, value in ashok['geoip'].items() %}
+                <tr>
+                    <th>{{ key }}</th>
+                    <td>{{ value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
 </main>
 {% endblock %}
