@@ -12,6 +12,31 @@
         </div>
     </div>
 
-    <h2>Section title</h2>
+
+    <h2>Firewalls</h2>
+    <div class="table-responsive">
+        <table class="table align-middle table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Firewall found</th>
+                    <th scope="col">Firewall</th>
+                    <th scope="col">Manufacturer</th>
+                    <th scope="col">Url</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fire in firewalls %}
+                <tr>
+                    <td>{{ fire['detected'] }}</td>
+                    <td>{{ fire['firewall'] }}</td>
+                    <td>{{ fire['manufacturer'] }}</td>
+                    <td>{{ fire['url'] }}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 </main>
 {% endblock %}

@@ -28,7 +28,7 @@ def phase_2():
 
 @dashboard.route('/vulnerability-scan')
 def phase_3():
-    return render_template("dashboard-phase3.html")
+    return render_template("dashboard-phase3.html", firewalls= Session.get('waf00f'))
 
 
 @dashboard.route('/cookie-compliance')
