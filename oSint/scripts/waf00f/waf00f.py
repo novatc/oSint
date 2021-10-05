@@ -1,10 +1,10 @@
-from modules.wafw00f.lib import asciiarts
-from modules.wafw00f.main import WAFW00F, buildResultRecord
+from modules.costum_waf00f.art import randomArt
+from modules.costum_waf00f.main_waf00f import WAFW00F, buildResultRecord
 
 
 def run_waf00f(url):
     results = []
-    print(asciiarts.randomArt())
+    print(randomArt())
     attacker = WAFW00F(url)
     waf = attacker.identwaf(findall=True)
     print('Identified WAF: %s' % waf)
@@ -24,3 +24,4 @@ def run_waf00f(url):
             results.append(buildResultRecord(url, None))
     print('[~] Number of requests: %s' % attacker.requestnumber)
     return results
+x = run_waf00f("https://www.gigant.com/")
