@@ -11,7 +11,7 @@ from oSint.scripts.ashok.ashok_script import ashok
 from oSint.scripts.cookies.cookiiies import get_cookies, scrape_cookies, start_browser
 from oSint.scripts.dns_records import find_ip, get_dns_record
 from oSint.scripts.host_discovery_nmap import run_host_discovery
-from oSint.scripts.waf00f.waf00f import run_waf00f
+from oSint.scripts.wafw00f.wafw00f import run_wafw00f
 
 from oSint.scripts.cookies.sitemap import scrape_sitemap
 from oSint.scripts.wappalyzer.wappalyzer import analyze_webpage

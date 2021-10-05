@@ -1,8 +1,8 @@
-from modules.waf00f.art import randomArt
-from modules.waf00f.main_waf00f import WAFW00F, buildResultRecord
+from modules.wafw00f.art import randomArt
+from modules.wafw00f.main_waf00f import WAFW00F, buildResultRecord
 
 
-def run_waf00f(url):
+def run_wafw00f(url):
     results = []
     art = randomArt()
     results.append(art)
