@@ -50,14 +50,16 @@ def ashok(url):
     """
     ashok_result = {}
 
+    # TODO nutzen von Domains wie http://example.com etc. ermöglichen 
+    print(url)
     protocol = url.split('/')[0]
     third_level_domain = url.split('/')[2].split('.')[0]
     first_level_domain = url.split('/')[2].split('.')[1]
     top_level_domain = url.split('/')[2].split('.')[2]
 
     url = protocol + '//' + third_level_domain + '.' + first_level_domain + '.' + top_level_domain
-    domain = first_level_domain + '.' + top_level_domain
 
+    domain = first_level_domain + '.' + top_level_domain
     print_logo()
     
     # Extract Http Headers from single url
@@ -150,8 +152,3 @@ def ashok(url):
     # print()
 
     return ashok_result
-
-r = ashok('https://www.deepl.com/')
-for k, v in r.items(): 
-
-    print(str(k)  + ' : ' + str(v))

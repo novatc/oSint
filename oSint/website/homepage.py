@@ -7,6 +7,7 @@ from flask import Blueprint
 from flask import current_app as app
 from flask import flash, redirect, render_template, request
 from flask.helpers import url_for
+from oSint.scripts.ashok.ashok_script import ashok
 from oSint.scripts.cookies.cookiiies import get_cookies, scrape_cookies, start_browser
 from oSint.scripts.dns_records import find_ip, get_dns_record
 from oSint.scripts.host_discovery_nmap import run_host_discovery
@@ -18,88 +19,115 @@ from oSint.website.util.session import Session
 homepage = Blueprint('homepage', __name__)
 
 browser = None
-ip = None
 
 @homepage.route('/', methods=['GET', 'POST'])
-def step_one():
+def hompage():
     if request.method == 'POST':
         
         url = request.form.get('url')
+        options = request.form.getlist('hacking-options') if request.form.getlist('hacking-options') else []
 
-        valid = validators.url(url)
-        if valid:
-
-            base_url = refactor_url(url)
-            Session.set('url', base_url)
-            
-            
-            
-            sitemap = scrape_sitemap(base_url)
-            Session.set('sitemap', sitemap)
-            cookie_checkbox = request.form.get('cookie_check')
-            global browser
-
-
-            if cookie_checkbox != None:
-                print("Cookies check durchführen...")
-                browser = start_browser()
-                urls = [tuple[0] for tuple in sitemap]
-                cookies_before = get_cookies(browser, urls)
-
-                cookies = {
-                    'cookies_before' : cookies_before
-                }
-
-                Session.set('cookies', cookies)
-            base_url = Session.get('url')
-            ip = find_ip(base_url)
-
-            # nmap
-            nmap_checkbox = request.form.get('nmap_check')
-            if nmap_checkbox != None:
-                print("Running nmap...")
-                hosts = run_host_discovery(ip)
-                Session.set('hosts', hosts)
-
-            # dns
-            dns_record = get_dns_record(base_url)
-            #Session.set('dns_record', dns_record)
-            return redirect(url_for('homepage.step_two'))
-        
-        else:
+        # Check if url is valid
+        if not validators.url(url):
             flash("Website not valid.", category='error')
+            return render_template("home.html")
+
+        base_url = refactor_url(url)
+        Session.set('url', base_url)
+
+        if 'phase-one' in options:
+            phase_one(base_url, request.form.getlist('phase-one-options'))
+        if 'phase-two' in options:
+            phase_two(base_url, request.form.getlist('phase-two-options'))
+        if 'phase-three' in options:
+            phase_three(base_url, request.form.getlist('phase-three-options'))
+        if 'phase-four' in options:
+             return phase_four(base_url, request.form.getlist('phase-four-options'))
 
 
+        print(find_ip(base_url))
+
+
+        return redirect(url_for('dashboard.overview'))
+
+
+    Session.reset()
     return render_template("home.html")
+
+
+def phase_one(url, options):
+    print("Phase 1 started")
+    options = options if options else []
+
+
+def phase_two(url, options):
+    print("Phase 2 started")
+    options = options if options else []
+    if 'wappalyzer' in options:
+        print("Running wappalyzer")
+        web_technologies = analyze_webpage(url)
+        Session.set('web_technologies', web_technologies)
+
+    if 'ashok' in options:
+        print("Running ashok")
+        result = ashok(url)
+        Session.set('ashok_results', result)
+
+
+def phase_three(url, options):
+    print("Phase 3 started")
+    options = options if options else []
+
+
+def phase_four(url, options):
+    print("Phase 4 started")
+    options = options if options else []
+
+    urls = []
+    if 'sitemap' in options:
+        sitemap = scrape_sitemap(url)
+        Session.set('sitemap', sitemap)
+        urls = [tuple[0] for tuple in sitemap]
+    else:
+        urls.append(url)
+
+    global browser
+    browser = start_browser()
+
+    cookies_before = get_cookies(browser, urls)
+    cookies = {
+        'cookies_before' : cookies_before
+    }
+    Session.set('cookies', cookies)
+
+    return redirect(url_for('homepage.step_two'))
 
 @homepage.route('/accept-cookies', methods=['GET', 'POST'])
 def step_two():
     if request.method == 'POST':
 
         global browser
-        global ip
 
         sitemap = Session.get('sitemap')
-        urls = [tuple[0] for tuple in sitemap]
-        cookie_checkbox = request.form.get('cookie_check')
-        if cookie_checkbox != None:
-            cookies_after = get_cookies(browser, urls)
+        if sitemap:
+            urls = [tuple[0] for tuple in sitemap]
+        else:
+            urls = [Session.get('url')]
 
-            cookies = Session.get('cookies')
-            cookies['cookies_after'] = cookies_after
-
-            Session.set('cookies', cookies)
-
-            browser.close()
-
-
-        web_technologies = analyze_webpage(Session.get('url'))
-        Session.set('web_technologies', web_technologies)
+        cookies_after = get_cookies(browser, urls)
         
+        cookies = Session.get('cookies')
+        cookies['cookies_after'] = cookies_after
+            
+        Session.set('cookies', cookies)
+
+        browser.close()
+
         return redirect(url_for('dashboard.overview'))
 
 
     return render_template("accept-cookies.html")
+
 
 def refactor_url(url):
     return '/'.join(url.split('/')[:3]) 

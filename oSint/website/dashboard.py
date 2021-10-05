@@ -18,6 +18,7 @@ def overview():
 def phase_1():
     return render_template("dashboard-phase1.html", host = Session.get('hosts'))
 
+    return render_template("dashboard-phase1.html", ashok = Session.get('ashok_results'))
 
 @dashboard.route('/metadata-check')
 def phase_2():
