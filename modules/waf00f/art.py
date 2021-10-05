@@ -6,7 +6,6 @@ See the LICENSE file for copying permission.
 
 from sys import platform
 from random import randint
-from wafw00f import __version__
 
 # Colors for terminal
 W = '\033[1;97m'
@@ -36,7 +35,7 @@ def randomArt():
         '''+Y+'''(  /  )       '''+G+''' / | \                  '''+R+'''. '''+Y+'''|__|
          '''+Y+r'''\(_)_))      '''+G+'''/  |  \                   '''+Y+'''|__|'''+E+'''
 
-                    '''+C+'~ WAFW00F : '+B+'v'+__version__+''' ~'''+W+'''
+                    '''+C+'~ WAFW00F : '+B+'v'+''' ~'''+W+'''
     The Web Application Firewall Fingerprinting Toolkit
     '''+E
 
@@ -55,7 +54,7 @@ def randomArt():
     '''+C+r'''`\    /_\\_              '''+Y+'''502 Bad Gateway  '''+R+'''/ / \ \  '''+Y+'''500 Internal Error
       '''+C+'''`_____``-`                             '''+R+'''/_/   \_\\
 
-                        '''+C+'~ WAFW00F : '+B+'v'+__version__+''' ~'''+W+'''
+                        '''+C+'~ WAFW00F : '+B+'v'+''' ~'''+W+'''
         The Web Application Firewall Fingerprinting Toolkit
     '''+E
 

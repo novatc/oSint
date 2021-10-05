@@ -1,42 +1,45 @@
 {% extends "dashboard.html" %} {% block title %}Phase 3{% endblock %}
-{% block content%}
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Vulnerability Check</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Vulnerability Check</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <h2>Firewalls</h2>
-    <div class="table-responsive">
-        <table class="table align-middle table-striped table-bordered">
-            <thead>
+        <h2>Firewalls</h2>
+        <pre>{% print(firewalls[0]) %}</pre>
+
+        <div class="table-responsive">
+            <table class="table align-middle table-striped table-bordered">
+                <thead>
                 <tr>
                     <th scope="col">Firewall found</th>
                     <th scope="col">Firewall</th>
                     <th scope="col">Manufacturer</th>
                     <th scope="col">Url</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
+
                 {% for fire in firewalls %}
-                <tr>
-                    <td>{{ fire['detected'] }}</td>
-                    <td>{{ fire['firewall'] }}</td>
-                    <td>{{ fire['manufacturer'] }}</td>
-                    <td>{{ fire['url'] }}</td>
+                    <tr>
+                        <td>{{ fire['detected'] }}</td>
+                        <td>{{ fire['firewall'] }}</td>
+                        <td>{{ fire['manufacturer'] }}</td>
+                        <td>{{ fire['url'] }}</td>
 
-                </tr>
+                    </tr>
                 {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
 
-</main>
+    </main>
 {% endblock %}
