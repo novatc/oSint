@@ -1,5 +1,5 @@
-from modules.wafw00f.wafw00f.lib import asciiarts
-from modules.wafw00f.wafw00f.main import WAFW00F, buildResultRecord
+from modules.wafw00f.lib import asciiarts
+from modules.wafw00f.main import WAFW00F, buildResultRecord
 
 
 def run_waf00f(url):
