@@ -11,6 +11,7 @@ from oSint.scripts.ashok.ashok_script import ashok
 from oSint.scripts.cookies.cookiiies import get_cookies, scrape_cookies, start_browser
 from oSint.scripts.dns_records import find_ip, get_dns_record
 from oSint.scripts.host_discovery_nmap import run_host_discovery
+from oSint.scripts.waf00f.waf00f import run_waf00f
 
 from oSint.scripts.cookies.sitemap import scrape_sitemap
 from oSint.scripts.wappalyzer.wappalyzer import analyze_webpage
@@ -85,6 +86,10 @@ def phase_two(url, options):
 def phase_three(url, options):
     print("Phase 3 started")
     options = options if options else []
+    if 'waf00f' in options:
+        print("Running waf00f")
+        result = run_waf00f(url)
+        Session.set('waf00f', result)
 
 
 def phase_four(url, options):
