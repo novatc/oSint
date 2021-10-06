@@ -1,4 +1,4 @@
-from modules.wafw00f.lib.asciiarts import randomArt
+from modules.wafw00f.asciiarts import randomArt
 from modules.wafw00f.main import WAFW00F, buildResultRecord
 
 

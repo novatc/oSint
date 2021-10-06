@@ -17,11 +17,11 @@ import re
 import sys
 from collections import defaultdict
 from optparse import OptionParser
-from modules.wafw00f.lib.asciiarts import *
+from modules.wafw00f.asciiarts import *
 from modules.wafw00f import __version__, __license__
 from modules.wafw00f.manager import load_plugins
 from modules.wafw00f.wafprio import wafdetectionsprio
-from modules.wafw00f.lib.evillib import urlParser, waftoolsengine, def_headers
+from modules.wafw00f.evillib import urlParser, waftoolsengine, def_headers
 
 class WAFW00F(waftoolsengine):
 
