@@ -1,38 +1,71 @@
-{% extends "dashboard.html" %} {% block title %}Phase 2{% endblock %}
-{% block content%}
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Metadata Check</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+{% extends "dashboard.html" %} {% block title %}Phase 2 {% endblock %}
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Metadata Check</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                </div>
             </div>
         </div>
-    </div>
-    {% if webtech is not none %}
-        <h2>Web technologies</h2>
-        <div class="table-responsive">
-            <table class="table align-middle table-striped table-bordered">
-                <thead>
+        {% if webtech is not none %}
+            <h2>Web technologies</h2>
+            <div class="table-responsive">
+                <table class="table align-middle table-striped table-bordered">
+                    <thead>
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Versions</th>
                         <th scope="col">Categories</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     {% for key, value in webtech.items() %}
-                    <tr>
-                        <th>{{ key }}</th>
-                        <td>{{ value['versions'] }}</td>
-                        <td>{{ value['categories'] }}</td>
-                    </tr>
+                        <tr>
+                            <th>{{ key }}</th>
+                            <td>{{ value['versions'] }}</td>
+                            <td>{{ value['categories'] }}</td>
+                        </tr>
                     {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% endif %}    
-</main>
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        {% if ripe is not none %}
+            <h2>RIPE DB Info</h2>
+            {% print(ripe['role']) %}
+            <div class="table-responsive">
+                <table class="table align-middle table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Rolle</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Fax</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">last modified</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td>{{ ripe['role'] }}</td>
+                        <td>{{ ripe['name'] }}</td>
+                        <td>{{ ripe['address'][0], ripe['address'][1] }}</td>
+                        <td>{{ ripe['phone'] }}</td>
+                        <td>{{ ripe['fax'] }}</td>
+                        <td>{{ ripe['mail'] }}</td>
+                        <td>{{ ripe['last_modified'] }}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </main>
 {% endblock %}
