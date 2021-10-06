@@ -11,72 +11,78 @@
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h3>Cookies before consent</h3>
-    </div>
-    <div class="table-responsive">
-        <table class="table align-middle table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Value</th>
-                    <th scope="col">Domain</th>
-                    <th scope="col">Path</th>
-                    <th scope="col">Secure</th>
-                    <th scope="col">HttpOnly</th>
-                    <th scope="col">Expiry</th>
-                    <th scope="col">SameSite</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for key, value in cookies_before.items() %}
-                <tr>
-                    <th style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ key }}</th>
-                    <td style="word-wrap: break-word;min-width: 25vw;max-width: 25vw;">{{ value['value'] }}</td>
-                    <td style="word-wrap: break-word;min-width: 10vw;max-width: 10vw;">{{ value['domain'] }}</td>
-                    <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['path'] }}</td>
-                    <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['secure'] }}</td>
-                    <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['httpOnly'] }}</td>
-                    <td style="word-wrap: break-word;min-width: 10vw;max-width: 10vw;">{{ value['expiry'] }}</td>
-                    <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['httpOnly'] }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <br />
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h3>Cookies after consent</h3>
-    </div>
-    <div class="table-responsive">
-        <table class="table align-middle table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Value</th>
-                    <th scope="col">Domain</th>
-                    <th scope="col">Path</th>
-                    <th scope="col">Secure</th>
-                    <th scope="col">HttpOnly</th>
-                    <th scope="col">Expiry</th>
-                    <th scope="col">SameSite</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for key, value in cookies_after.items() %}
-                <tr>
-                    <th style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ key }}</th>
-                    <td style="word-wrap: break-word;min-width: 25vw;max-width: 25vw;">{{ value['value'] }}</td>
-                    <td style="word-wrap: break-word;min-width: 10vw;max-width: 10vw;">{{ value['domain'] }}</td>
-                    <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['path'] }}</td>
-                    <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['secure'] }}</td>
-                    <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['httpOnly'] }}</td>
-                    <td style="word-wrap: break-word;min-width: 10vw;max-width: 10vw;">{{ value['expiry'] }}</td>
-                    <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['httpOnly'] }}</td></tr>
-                {% endfor %}
-            </tbody>
-            </tbody>
-        </table>
-    </div>
+
+
+    {% if cookies_before is not none %}
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h3>Cookies before consent</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Domain</th>
+                        <th scope="col">Path</th>
+                        <th scope="col">Secure</th>
+                        <th scope="col">HttpOnly</th>
+                        <th scope="col">Expiry</th>
+                        <th scope="col">SameSite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, value in cookies_before.items() %}
+                    <tr>
+                        <th style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ key }}</th>
+                        <td style="word-wrap: break-word;min-width: 25vw;max-width: 25vw;">{{ value['value'] }}</td>
+                        <td style="word-wrap: break-word;min-width: 10vw;max-width: 10vw;">{{ value['domain'] }}</td>
+                        <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['path'] }}</td>
+                        <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['secure'] }}</td>
+                        <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['httpOnly'] }}</td>
+                        <td style="word-wrap: break-word;min-width: 10vw;max-width: 10vw;">{{ value['expiry'] }}</td>
+                        <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['httpOnly'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br />
+    {% endif %}
+    {% if cookies_after is not none %}
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h3>Cookies after consent</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Domain</th>
+                        <th scope="col">Path</th>
+                        <th scope="col">Secure</th>
+                        <th scope="col">HttpOnly</th>
+                        <th scope="col">Expiry</th>
+                        <th scope="col">SameSite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, value in cookies_after.items() %}
+                    <tr>
+                        <th style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ key }}</th>
+                        <td style="word-wrap: break-word;min-width: 25vw;max-width: 25vw;">{{ value['value'] }}</td>
+                        <td style="word-wrap: break-word;min-width: 10vw;max-width: 10vw;">{{ value['domain'] }}</td>
+                        <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['path'] }}</td>
+                        <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['secure'] }}</td>
+                        <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['httpOnly'] }}</td>
+                        <td style="word-wrap: break-word;min-width: 10vw;max-width: 10vw;">{{ value['expiry'] }}</td>
+                        <td style="word-wrap: break-word;min-width: 5vw;max-width: 5vw;">{{ value['httpOnly'] }}</td></tr>
+                    {% endfor %}
+                </tbody>
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 </main>
 {% endblock %}

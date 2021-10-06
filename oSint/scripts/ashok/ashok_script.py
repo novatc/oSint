@@ -18,9 +18,7 @@ from modules.Ashok.plugins.techanalyzer import techno
 import sys
 
 dorknumber = 10
-
-def print_logo():
-    print("""
+ascii = """
 
 
     ▄▄▄        ██████  ██░ ██  ▒█████   ██ ▄█▀
@@ -32,7 +30,10 @@ def print_logo():
     ▒   ▒▒ ░░ ░▒  ░ ░ ▒ ░▒░ ░  ░ ▒ ▒░ ░ ░▒ ▒░
     ░   ▒   ░  ░  ░   ░  ░░ ░░ ░ ░ ▒  ░ ░░ ░  > Recon Swiss Army Knife
         ░  ░      ░   ░  ░  ░    ░ ░  ░  ░      v1.1   
-    """)
+    """
+
+def print_logo():
+    print(ascii)
     print("""
     Author  : Ankit Dobhal | Break||The||Code
     Github  : https://github.com/ankitdobhal
@@ -49,7 +50,7 @@ def ashok(url):
         
     """
     ashok_result = {}
-
+    ashok_result['ascii'] = ascii
     # TODO nutzen von Domains wie http://example.com etc. ermöglichen 
     print(url)
     protocol = url.split('/')[0]

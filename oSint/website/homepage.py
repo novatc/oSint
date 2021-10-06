@@ -64,6 +64,10 @@ def phase_one(url, options):
         hosts = run_host_discovery(ip)
         Session.set('nmap_hosts', hosts)
 
+    if 'ashok' in options:
+        print("Running ashok")
+        result = ashok(url)
+        Session.set('ashok_results', result)
 
 def phase_two(url, options):
     print("Phase 2 started")
@@ -72,11 +76,6 @@ def phase_two(url, options):
         print("Running wappalyzer")
         web_technologies = analyze_webpage(url)
         Session.set('web_technologies', web_technologies)
-
-    if 'ashok' in options:
-        print("Running ashok")
-        result = ashok(url)
-        Session.set('ashok_results', result)
 
 
 def phase_three(url, options):
