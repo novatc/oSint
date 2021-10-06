@@ -23,12 +23,13 @@ def phase_1():
 
 @dashboard.route('/metadata-check')
 def phase_2():
-    return render_template("dashboard-phase2.html", webtech=Session.get('web_technologies'))
+    return render_template("dashboard-phase2.html", webtech=Session.get('web_technologies'),
+                           ripe=Session.get('ripe_results'))
 
 
 @dashboard.route('/vulnerability-scan')
 def phase_3():
-    return render_template("dashboard-phase3.html", firewalls= Session.get('waf00f'))
+    return render_template("dashboard-phase3.html", firewalls=Session.get('waf00f'))
 
 
 @dashboard.route('/cookie-compliance')

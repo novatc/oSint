@@ -12,6 +12,7 @@ from oSint.scripts.cookies.cookiiies import get_cookies, scrape_cookies, start_b
 from oSint.scripts.dns_records import find_ip, get_dns_record
 from oSint.scripts.host_discovery_nmap import run_host_discovery
 from oSint.scripts.wafw00f.wafw00f import run_wafw00f
+from oSint.scripts.ripe_db import get_ripe_info
 
 from oSint.scripts.cookies.sitemap import scrape_sitemap
 from oSint.scripts.wappalyzer.wappalyzer import analyze_webpage
@@ -68,6 +69,12 @@ def phase_one(url, options):
         print("Running ashok")
         result = ashok(url)
         Session.set('ashok_results', result)
+
+    if 'ripe' in options:
+        ip = find_ip(url)
+        print("Running RIPE")
+        result = get_ripe_info(ip)
+        Session.set('ripe_results', result)
 
 def phase_two(url, options):
     print("Phase 2 started")
