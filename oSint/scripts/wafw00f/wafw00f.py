@@ -1,10 +1,12 @@
-from modules.wafw00f.wafw00f.lib import asciiarts
-from modules.wafw00f.wafw00f.main import WAFW00F, buildResultRecord
+from modules.wafw00f.asciiarts import randomArt
+from modules.wafw00f.main import WAFW00F, buildResultRecord
 
 
-def run_waf00f(url):
+def run_wafw00f(url):
     results = []
-    print(asciiarts.randomArt())
+    art = randomArt()
+    results.append(art)
+    print(randomArt())
     attacker = WAFW00F(url)
     waf = attacker.identwaf(findall=True)
     print('Identified WAF: %s' % waf)

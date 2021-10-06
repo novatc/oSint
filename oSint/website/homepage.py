@@ -11,7 +11,7 @@ from oSint.scripts.ashok.ashok_script import ashok
 from oSint.scripts.cookies.cookiiies import get_cookies, scrape_cookies, start_browser
 from oSint.scripts.dns_records import find_ip, get_dns_record
 from oSint.scripts.host_discovery_nmap import run_host_discovery
-from oSint.scripts.waf00f.waf00f import run_waf00f
+from oSint.scripts.wafw00f.wafw00f import run_wafw00f
 
 from oSint.scripts.cookies.sitemap import scrape_sitemap
 from oSint.scripts.wappalyzer.wappalyzer import analyze_webpage
@@ -64,6 +64,10 @@ def phase_one(url, options):
         hosts = run_host_discovery(ip)
         Session.set('nmap_hosts', hosts)
 
+    if 'ashok' in options:
+        print("Running ashok")
+        result = ashok(url)
+        Session.set('ashok_results', result)
 
 def phase_two(url, options):
     print("Phase 2 started")
@@ -73,18 +77,13 @@ def phase_two(url, options):
         web_technologies = analyze_webpage(url)
         Session.set('web_technologies', web_technologies)
 
-    if 'ashok' in options:
-        print("Running ashok")
-        result = ashok(url)
-        Session.set('ashok_results', result)
-
 
 def phase_three(url, options):
     print("Phase 3 started")
     options = options if options else []
     if 'waf00f' in options:
         print("Running waf00f")
-        result = run_waf00f(url)
+        result = run_wafw00f(url)
         Session.set('waf00f', result)
 
 
